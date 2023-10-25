@@ -1,6 +1,8 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,10 +44,10 @@ class _UploadphotoprofileWidgetState extends State<UploadphotoprofileWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 100.0,
@@ -61,8 +63,8 @@ class _UploadphotoprofileWidgetState extends State<UploadphotoprofileWidget> {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
               child: Container(
-                width: 90.0,
-                height: 90.0,
+                width: 120.0,
+                height: 120.0,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -70,18 +72,68 @@ class _UploadphotoprofileWidgetState extends State<UploadphotoprofileWidget> {
                 child: CachedNetworkImage(
                   fadeInDuration: Duration(milliseconds: 500),
                   fadeOutDuration: Duration(milliseconds: 500),
-                  imageUrl:
-                      'https://images.unsplash.com/photo-1536164261511-3a17e671d380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=630&q=80',
+                  imageUrl: valueOrDefault<String>(
+                    _model.uploadedFileUrl,
+                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                  ),
                   fit: BoxFit.fitWidth,
                 ),
               ),
             ),
           ),
           FFButtonWidget(
-            onPressed: () {
-              print('Button pressed ...');
+            onPressed: () async {
+              final selectedMedia = await selectMediaWithSourceBottomSheet(
+                context: context,
+                storageFolderPath: 'galeria',
+                allowPhoto: true,
+              );
+              if (selectedMedia != null &&
+                  selectedMedia.every(
+                      (m) => validateFileFormat(m.storagePath, context))) {
+                setState(() => _model.isDataUploading = true);
+                var selectedUploadedFiles = <FFUploadedFile>[];
+
+                var downloadUrls = <String>[];
+                try {
+                  showUploadMessage(
+                    context,
+                    'Uploading file...',
+                    showLoading: true,
+                  );
+                  selectedUploadedFiles = selectedMedia
+                      .map((m) => FFUploadedFile(
+                            name: m.storagePath.split('/').last,
+                            bytes: m.bytes,
+                            height: m.dimensions?.height,
+                            width: m.dimensions?.width,
+                            blurHash: m.blurHash,
+                          ))
+                      .toList();
+
+                  downloadUrls = await uploadSupabaseStorageFiles(
+                    bucketName: 'galeria',
+                    selectedFiles: selectedMedia,
+                  );
+                } finally {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  _model.isDataUploading = false;
+                }
+                if (selectedUploadedFiles.length == selectedMedia.length &&
+                    downloadUrls.length == selectedMedia.length) {
+                  setState(() {
+                    _model.uploadedLocalFile = selectedUploadedFiles.first;
+                    _model.uploadedFileUrl = downloadUrls.first;
+                  });
+                  showUploadMessage(context, 'Success!');
+                } else {
+                  setState(() {});
+                  showUploadMessage(context, 'Failed to upload data');
+                  return;
+                }
+              }
             },
-            text: 'Change Photo',
+            text: 'Upload de imagem ',
             options: FFButtonOptions(
               height: 44.0,
               padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),

@@ -253,10 +253,10 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                       indicatorWeight: 3.0,
                                       tabs: [
                                         Tab(
-                                          text: 'Create Account',
+                                          text: 'Criar Conta',
                                         ),
                                         Tab(
-                                          text: 'Log In',
+                                          text: 'Login',
                                         ),
                                       ],
                                       controller: _model.tabBarController,
@@ -746,9 +746,26 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                                             return;
                                                           }
 
-                                                          context.goNamedAuth(
-                                                              'Tela_onbounding',
-                                                              context.mounted);
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      2000));
+
+                                                          context.pushNamedAuth(
+                                                            'profileinf',
+                                                            context.mounted,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                              ),
+                                                            },
+                                                          );
                                                         },
                                                         text: 'Get Started',
                                                         options:
@@ -1224,7 +1241,7 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                                             .passwordVisibility2,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText: 'Password',
+                                                          labelText: 'Senha',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1315,7 +1332,7 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                                                       .visibility_off_outlined,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryText,
+                                                                  .accent3,
                                                               size: 24.0,
                                                             ),
                                                           ),
@@ -1324,6 +1341,9 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLarge,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .visiblePassword,
                                                         validator: _model
                                                             .passwordController2Validator
                                                             .asValidator(

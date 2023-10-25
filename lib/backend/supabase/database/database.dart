@@ -7,4 +7,5 @@ export 'table.dart';
 
 export 'tables/galeria.dart';
 export 'tables/artistas.dart';
+export 'tables/users.dart';
 export 'tables/historias.dart';

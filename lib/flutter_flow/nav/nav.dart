@@ -102,6 +102,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'liststory',
           path: '/liststory',
           builder: (context, params) => ListstoryWidget(),
+        ),
+        FFRoute(
+          name: 'profileinf',
+          path: '/profileinf',
+          builder: (context, params) => ProfileinfWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -37,6 +37,25 @@ class _TelaOnboundingWidgetState extends State<TelaOnboundingWidget>
         ),
       ],
     ),
+    'buttonOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 600.ms,
+          duration: 600.ms,
+          begin: Offset(0.0, 100.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -124,13 +143,15 @@ class _TelaOnboundingWidgetState extends State<TelaOnboundingWidget>
                                   fontFamily: 'Plus Jakarta Sans',
                                   color: FlutterFlowTheme.of(context).info,
                                   fontSize: 16.0,
+                                  letterSpacing: 2.0,
+                                  lineHeight: 2.0,
                                 ),
                           ),
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.00, 1.00),
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('liststory');
@@ -141,12 +162,12 @@ class _TelaOnboundingWidgetState extends State<TelaOnboundingWidget>
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
-                              height: 40.0,
+                              height: 50.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF41D563),
+                              color: Color(0x2D41D563),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -155,12 +176,13 @@ class _TelaOnboundingWidgetState extends State<TelaOnboundingWidget>
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
-                                color: Colors.transparent,
+                                color: Color(0xFF41D563),
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                          ),
+                          ).animateOnPageLoad(
+                              animationsMap['buttonOnPageLoadAnimation']!),
                         ),
                       ),
                     ],

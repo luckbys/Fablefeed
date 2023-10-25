@@ -101,7 +101,7 @@ class _ListstoryWidgetState extends State<ListstoryWidget>
               },
             ).then((value) => safeSetState(() {}));
           },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: Color(0xFF22A899),
           elevation: 8.0,
           child: Icon(
             Icons.add,
@@ -2208,46 +2208,56 @@ class _ListstoryWidgetState extends State<ListstoryWidget>
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  12.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: RichText(
-                                                        textScaleFactor:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaleFactor,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: 'ID#: ',
-                                                              style:
-                                                                  TextStyle(),
-                                                            ),
-                                                            TextSpan(
-                                                              text: dateTimeFormat(
-                                                                  'd/M H:mm',
-                                                                  mobileViewHistoriasRow
-                                                                      .dataCriacao!),
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      12.0,
+                                                                      12.0,
+                                                                      8.0),
+                                                          child: RichText(
+                                                            textScaleFactor:
+                                                                MediaQuery.of(
                                                                         context)
-                                                                    .primary,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge,
+                                                                    .textScaleFactor,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: dateTimeFormat(
+                                                                      'd/M H:mm',
+                                                                      mobileViewHistoriasRow
+                                                                          .dataCriacao!),
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Plus Jakarta Sans',
+                                                                    fontSize:
+                                                                        14.0,
+                                                                  ),
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
+                                                      ],
                                                     ),
                                                     Padding(
                                                       padding:

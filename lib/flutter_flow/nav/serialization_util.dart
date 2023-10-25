@@ -208,6 +208,8 @@ dynamic deserializeParam<T>(
             return GaleriaRow(data);
           case ArtistasRow:
             return ArtistasRow(data);
+          case UsersRow:
+            return UsersRow(data);
           case HistoriasRow:
             return HistoriasRow(data);
           default:
