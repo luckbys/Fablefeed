@@ -2292,7 +2292,13 @@ class _ListstoryWidgetState extends State<ListstoryWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium,
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  letterSpacing:
+                                                                      4.0,
+                                                                ),
                                                       ),
                                                     ),
                                                     Divider(

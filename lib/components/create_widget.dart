@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/uploadphotoprofile_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -148,7 +147,7 @@ class _CreateWidgetState extends State<CreateWidget>
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Your Name',
+                            labelText: 'Titulo da História',
                             labelStyle:
                                 FlutterFlowTheme.of(context).labelMedium,
                             hintStyle: FlutterFlowTheme.of(context).labelMedium,
@@ -253,13 +252,19 @@ class _CreateWidgetState extends State<CreateWidget>
                         child: FlutterFlowDropDown<String>(
                           controller: _model.dropDownValueController ??=
                               FormFieldController<String>(null),
-                          options: ['Admin', 'Manager', 'Editor', 'Viewer'],
+                          options: [
+                            'Aventura',
+                            'Romance ',
+                            'Criminal',
+                            'Terror ',
+                            'Drama'
+                          ],
                           onChanged: (val) =>
                               setState(() => _model.dropDownValue = val),
                           width: double.infinity,
                           height: 58.0,
                           textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Please select...',
+                          hintText: 'Categoria',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -278,107 +283,11 @@ class _CreateWidgetState extends State<CreateWidget>
                           isMultiSelect: false,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 24.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'The email associated with this account is:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    )),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      currentUserEmail,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
-                                    )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'Created On:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    )),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'July 12th, 2023',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
-                                    )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'Last Active:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    )),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 0.0, 0.0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'Just Now',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
-                                    )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ].divide(SizedBox(width: 16.0)),
-                        ),
-                      ),
                     ],
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 24.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

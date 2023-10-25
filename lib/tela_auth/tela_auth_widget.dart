@@ -1376,7 +1376,7 @@ class _TelaAuthWidgetState extends State<TelaAuthWidget>
                                                                 .emailAddressController1
                                                                 .text,
                                                             _model
-                                                                .passwordController1
+                                                                .passwordController2
                                                                 .text,
                                                           );
                                                           if (user == null) {
